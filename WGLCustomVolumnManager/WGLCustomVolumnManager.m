@@ -24,9 +24,25 @@ NSString *const WGLSystemVolumeDidChangeNotification = @"WGLSystemVolumeDidChang
 
 - (instancetype)init {
     if (self = [super init]) {
-        [self addNotifications];
+        
     }
     return self;
+}
+
+//注册音量变化通知
+- (void)registerVolumnChangeNotify {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self
+               selector:@selector(volumeChange:) name:@"AVSystemController_SystemVolumeDidChangeNotification"
+                 object:nil];
+}
+
+//取消注册音量变化通知
+- (void)unregisterVolumnChangeNotify {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center removeObserver:self
+                      name:@"AVSystemController_SystemVolumeDidChangeNotification"
+                    object:nil];
 }
 
 #pragma mark - 音量控制
@@ -70,10 +86,6 @@ NSString *const WGLSystemVolumeDidChangeNotification = @"WGLSystemVolumeDidChang
 }
 
 #pragma mark - 音量变化通知
-
-- (void)addNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChange:) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
-}
 
 - (void)volumeChange:(NSNotification *)notifi {
     NSString *style = [notifi.userInfo objectForKey:@"AVSystemController_AudioCategoryNotificationParameter"];

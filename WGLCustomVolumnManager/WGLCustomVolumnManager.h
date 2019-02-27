@@ -20,7 +20,14 @@ extern NSString *const WGLSystemVolumeDidChangeNotification;
 
 @interface WGLCustomVolumnManager : NSObject
 
+//管理器
 + (instancetype)sharedManager;
+
+//注册音量变化通知
+- (void)registerVolumnChangeNotify;
+
+//取消注册音量变化通知
+- (void)unregisterVolumnChangeNotify;
 
 /*
  *获取系统音量大小

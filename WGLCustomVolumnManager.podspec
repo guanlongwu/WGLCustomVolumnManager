@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "WGLCustomVolumnManager"
-  spec.version      = "0.0.1"
+  spec.version      = "0.0.2"
   spec.summary      = "This is a custom volumn manager to hide system volumn."
 
   # This description is used to generate tags and improve search results.
